@@ -10,12 +10,15 @@ export interface FoodItem {
 }
 
 export interface MealComponent {
+    id: string; // Unique instance ID
     group: NutrientGroup;
     portions: number;
     isFixed?: boolean;
     fixedItemName?: string;
     fixedQuantity?: number;
     defaultFoodId?: string;
+    // Runtime only:
+    selectedFoodId?: string;
 }
 
 export interface Meal {
@@ -132,49 +135,56 @@ export const FOOD_DATABASE: Record<NutrientGroup, FoodItem[]> = {
     ]
 };
 
+// Helper: Calculate total portions for a specific group in a default meal
+export function getGroupTotalPortions(mealIndex: number, group: NutrientGroup): number {
+    return DIET_PLAN[mealIndex].components
+        .filter(c => c.group === group)
+        .reduce((sum, c) => sum + c.portions, 0);
+}
+
 export const DIET_PLAN: Meal[] = [
     {
         id: 'cafe_manha',
         name: 'Café da Manhã',
         components: [
-            { group: 'carb', portions: 2.3, defaultFoodId: 'pao' }, // 115g Pao
-            { group: 'protein', portions: 1.25, defaultFoodId: 'iogurte' }, // 312.5g Iogurte
-            { group: 'fat', portions: 1.5, defaultFoodId: 'manteiga' }, // 15g Manteiga
-            { group: 'fruit', portions: 1.0, defaultFoodId: 'banana' }, // 90g Banana
+            { id: 'cm_carb', group: 'carb', portions: 2.3, defaultFoodId: 'pao' },
+            { id: 'cm_prot', group: 'protein', portions: 1.25, defaultFoodId: 'iogurte' },
+            { id: 'cm_fat', group: 'fat', portions: 1.5, defaultFoodId: 'manteiga' },
+            { id: 'cm_fruit', group: 'fruit', portions: 1.0, defaultFoodId: 'banana' },
         ]
     },
     {
         id: 'almoco',
         name: 'Almoço',
         components: [
-            { group: 'carb', portions: 1.15, defaultFoodId: 'arroz' }, // 115g Arroz
-            { group: 'carb', portions: 1.15, defaultFoodId: 'feijao' }, // 184g Feijao
-            { group: 'protein', portions: 1.25, defaultFoodId: 'patinho' }, // 87.5g Patinho
-            { group: 'fat', portions: 1.0, defaultFoodId: 'azeite' }, // 10g Azeite
-            { group: 'vegetable', portions: 0, isFixed: true, fixedItemName: 'Cenoura', fixedQuantity: 150 },
-            { group: 'fruit', portions: 1.0, defaultFoodId: 'maca' }, // 190g Maca
+            { id: 'al_carb1', group: 'carb', portions: 1.15, defaultFoodId: 'arroz' },
+            { id: 'al_carb2', group: 'carb', portions: 1.15, defaultFoodId: 'feijao' },
+            { id: 'al_prot', group: 'protein', portions: 1.25, defaultFoodId: 'patinho' },
+            { id: 'al_fat', group: 'fat', portions: 1.0, defaultFoodId: 'azeite' },
+            { id: 'al_veg', group: 'vegetable', portions: 0, isFixed: true, fixedItemName: 'Cenoura', fixedQuantity: 150 },
+            { id: 'al_fruit', group: 'fruit', portions: 1.0, defaultFoodId: 'maca' },
         ]
     },
     {
         id: 'lanche_tarde',
         name: 'Lanche da Tarde',
         components: [
-            { group: 'carb', portions: 2.3, defaultFoodId: 'pao' }, // 115g Pao
-            { group: 'protein', portions: 1.25, defaultFoodId: 'whey' }, // 50g Whey
-            { group: 'fat', portions: 1.25, defaultFoodId: 'queijo_mussarela' }, // 37.5g Queijo
-            { group: 'fruit', portions: 1.0, defaultFoodId: 'banana' },
+            { id: 'lt_carb', group: 'carb', portions: 2.3, defaultFoodId: 'pao' },
+            { id: 'lt_prot', group: 'protein', portions: 1.25, defaultFoodId: 'whey' },
+            { id: 'lt_fat', group: 'fat', portions: 1.25, defaultFoodId: 'queijo_mussarela' },
+            { id: 'lt_fruit', group: 'fruit', portions: 1.0, defaultFoodId: 'banana' },
         ]
     },
     {
         id: 'janta',
         name: 'Janta',
         components: [
-            { group: 'carb', portions: 1.15, defaultFoodId: 'arroz' }, // 115g Arroz
-            { group: 'carb', portions: 1.15, defaultFoodId: 'feijao' }, // 184g Feijao
-            { group: 'protein', portions: 1.25, defaultFoodId: 'frango' }, // 125g Frango
-            { group: 'fat', portions: 1.5, defaultFoodId: 'azeite' }, // 15g Azeite
-            { group: 'vegetable', portions: 0, isFixed: true, fixedItemName: 'Cenoura', fixedQuantity: 150 },
-            { group: 'fruit', portions: 1.0, defaultFoodId: 'maca' },
+            { id: 'jt_carb1', group: 'carb', portions: 1.15, defaultFoodId: 'arroz' },
+            { id: 'jt_carb2', group: 'carb', portions: 1.15, defaultFoodId: 'feijao' },
+            { id: 'jt_prot', group: 'protein', portions: 1.25, defaultFoodId: 'frango' },
+            { id: 'jt_fat', group: 'fat', portions: 1.5, defaultFoodId: 'azeite' },
+            { id: 'jt_veg', group: 'vegetable', portions: 0, isFixed: true, fixedItemName: 'Cenoura', fixedQuantity: 150 },
+            { id: 'jt_fruit', group: 'fruit', portions: 1.0, defaultFoodId: 'maca' },
         ]
     }
 ];
