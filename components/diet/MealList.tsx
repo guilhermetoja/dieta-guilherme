@@ -105,7 +105,7 @@ export function MealList() {
     };
 
     return (
-        <Accordion type="single" collapsible className="space-y-4 max-w-md mx-auto pb-20">
+        <Accordion type="single" collapsible className="space-y-4 w-full">
             {meals.map((meal, index) => (
                 <MealCard
                     key={meal.id}

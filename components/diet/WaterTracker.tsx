@@ -5,7 +5,7 @@ import { Droplets } from "lucide-react"
 
 export function WaterTracker() {
     return (
-        <div className="w-full max-w-md mx-auto mt-6 p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm">
+        <div className="w-full p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm">
             <div className="flex items-center gap-4">
                 <div className="p-3 bg-blue-500/10 rounded-xl">
                     <Droplets className="h-6 w-6 text-blue-500" />
