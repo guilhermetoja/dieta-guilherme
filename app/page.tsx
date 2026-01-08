@@ -1,5 +1,6 @@
 
 import { MealList } from "@/components/diet/MealList";
+import { WaterTracker } from "@/components/diet/WaterTracker";
 import { Apple } from "lucide-react";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
 
       <div className="p-4 pt-6">
         <MealList />
+        <WaterTracker />
       </div>
     </main>
   );

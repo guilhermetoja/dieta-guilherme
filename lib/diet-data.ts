@@ -159,7 +159,7 @@ export const DIET_PLAN: Meal[] = [
         components: [
             { id: 'al_carb1', group: 'carb', portions: 1.15, defaultFoodId: 'arroz' },
             { id: 'al_carb2', group: 'carb', portions: 1.15, defaultFoodId: 'feijao' },
-            { id: 'al_prot', group: 'protein', portions: 1.25, defaultFoodId: 'patinho' },
+            { id: 'al_prot', group: 'protein', portions: 1.25, defaultFoodId: 'frango' },
             { id: 'al_fat', group: 'fat', portions: 1.0, defaultFoodId: 'azeite' },
             { id: 'al_veg', group: 'vegetable', portions: 0, isFixed: true, fixedItemName: 'Cenoura', fixedQuantity: 150 },
             { id: 'al_fruit', group: 'fruit', portions: 1.0, defaultFoodId: 'maca' },
